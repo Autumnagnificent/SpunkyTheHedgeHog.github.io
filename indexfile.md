@@ -4,7 +4,7 @@
 
 Name: SpunkyTheHedgeHog
 
-Display: ![Spunky](Spunky.jpg)
+ <img src="Spunky.jpg" alt="Spunky" style="zoom: 25%;" />
 
 URL:
 

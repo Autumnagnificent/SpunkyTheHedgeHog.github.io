@@ -1,8 +1,6 @@
 # ==SpunkyTheHedgeHog’s Projects==
 
-## Placeholder for Project
-
-Name: SpunkyTheHedgeHog
+## SpunkyTheHedgeHog
 
  <img src="Spunky.jpg" alt="Spunky" style="zoom: 25%;" />
 

@@ -1,10 +1,33 @@
 # ==SpunkyTheHedgeHog’s Projects==
 
-This site is pretty blank...
+## Placeholder for Project
 
-I am still working on making it right now... ¯](ツ)[¯
+Name: SpunkyTheHedgeHog
 
-Enjoy this pixelated picture of SpunkyTheHedgeHog then:
+Display: ![Spunky](Spunky.jpg)
 
-<img src="https://avatars.githubusercontent.com/u/70984570?s=48&v=5" alt="@SpunkyTheHedgeHog" style="zoom:800%;" />
+URL:
 
+## Placeholder for Project
+
+Name:
+
+Display:
+
+URL:
+
+## Placeholder for Project
+
+Name:
+
+Display:
+
+URL:
+
+## Placeholder for Project
+
+Name:
+
+Display:
+
+URL:

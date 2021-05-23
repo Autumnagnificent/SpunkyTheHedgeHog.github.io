@@ -1,5 +1,3 @@
-
-
 # ==Spunky The Hedge Hog’s Projects==
 
 ## Map

@@ -8,4 +8,4 @@
 
 ​	I am *SpunkyTheHedgeHog*, or *SallyTheSeaOtter*, both are stuffed animals that I have in my room. I do a variety of things such as playing and making music, Programming and making games, Video Editing, 3d modeling and Digital Art, Experimenting with Artificial Intelligence, and more.
 
-<img src="..\Images and Videos\Spunky.jpg" alt="Spunky" style="zoom: 25%;">
+<img src="Images and Videos\Spunky.jpg" alt="Spunky" style="zoom: 25%;">

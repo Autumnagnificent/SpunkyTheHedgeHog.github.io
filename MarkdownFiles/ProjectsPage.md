@@ -8,9 +8,9 @@
 
 Metro 22 is a Color Palette based off of Metro Station Maps, 22 comes from the 22 colors in it.
 
-<img src="..\Images and Videos\Metro 22.png" alt="Metro 22" style="zoom: 100%;">
+<img src="Images and Videos\Metro 22.png" alt="Metro 22" style="zoom: 100%;">
 
-<img src="..\Images and Videos\Metro 22 Map.png" alt="Metro 22 Map" style="zoom: 100%;">
+<img src="Images and Videos\Metro 22 Map.png" alt="Metro 22 Map" style="zoom: 100%;">
 
 Link to Colors’ Hex Values: <a href="Metro Station Colors\index.html">Metro 22</a>
 

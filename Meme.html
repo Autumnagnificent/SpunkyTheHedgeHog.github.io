@@ -17,7 +17,12 @@
 
 			var url = "QRCodeMemeData/Counter.txt";
 
-			const response = await fetch(url, {method: "post"});
+			const response = await fetch(url, {method: "post", 
+			headers: {
+				'Accept': 'text/plain',
+				'Content-Type': 'text/plain'
+				}});
+
 			const data = await response.text();
 			var i = parseInt(data);
 

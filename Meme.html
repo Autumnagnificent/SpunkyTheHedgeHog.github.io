@@ -34,12 +34,14 @@
 			i++;
 			
 			document.getElementById("Count").innerHTML = i.toString();
-
+			
 			var fso = CreateObject("Scripting.FileSystemObject"); 
     		var s = fso.CreateTextFile(url, True);
-
+			
 			s.writeline(i);
 			s.Close();
+
+			document.getElementById("Count").innerHTML = i.toString() + " : Completed Writing to File!";
 		}
 		
 	</script>

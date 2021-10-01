@@ -1,9 +1,24 @@
 <!doctype html>
 <html>
 	
-	<meta http-equiv="Refresh" content="0; url='https://www.youtube.com/watch?v=dQw4w9WgXcQ'"/>
+	<!--
+		<meta http-equiv="Refresh" content="0; url='https://www.youtube.com/watch?v=dQw4w9WgXcQ'"/>
+	-->
 	
-	<body>
-		<p> [Insert RickRoll Here] </p>
-	</body>
+	<p id="Count">nothing</p>
+	
+	<script>
+		
+		// Requiring fs module in which 
+		// readFile function is defined.
+		const fs = require('fs')
+
+		fs.readFile('MemeVisitCounter.txt', (err, data) => {
+		    if (err) throw err;
+
+		    document.getElementById("Count").innerHTML = data.toString();
+		})
+		
+	</script>
+	
 </html>

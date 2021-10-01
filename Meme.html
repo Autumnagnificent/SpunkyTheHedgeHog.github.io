@@ -17,7 +17,7 @@
 
 			var url = "QRCodeMemeData/Counter.txt";
 
-			const response = await fetch(url);
+			const response = await fetch(url, {method: "post"});
 			const data = await response.text();
 			var i = parseInt(data);
 
@@ -25,10 +25,7 @@
 			
 			document.getElementById("Count").innerHTML = i.toString() + " : Have not Written to File";
 			
-			var fso = new ActiveXObject("Scripting.FileSystemObject");
-			var fh = fso.CreateTextFile(url, 8, true);
-			fh.WriteLine(i);
-			fh.Close();
+			response.blob
 			
 			document.getElementById("Count").innerHTML = i.toString() + " : Completed Writing to File!";
 		}

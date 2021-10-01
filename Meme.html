@@ -9,7 +9,7 @@
 	
 	<p id="Count">nothing</p>
 	
-	<script>
+	<script src="QRCodeMemeData/require.js">
 		
 		async function Func() {
 			
@@ -24,13 +24,22 @@
 			*/
 			
 			//	var url = "https://github.com/SpunkyTheHedgeHog/SpunkyTheHedgeHog.github.io/raw/master/QRCodeMemeData/Counter.txt";
+
 			var url = "QRCodeMemeData/Counter.txt";
 
 			const response = await fetch(url);
 			const data = await response.text();
-			console.log(data);
+			var i = parseInt(data);
+
+			i++;
 			
-			document.getElementById("Count").innerHTML = data.toString();
+			document.getElementById("Count").innerHTML = i.toString();
+
+			var fso = CreateObject("Scripting.FileSystemObject"); 
+    		var s = fso.CreateTextFile(url, True);
+
+			s.writeline(i);
+			s.Close();
 		}
 		
 	</script>

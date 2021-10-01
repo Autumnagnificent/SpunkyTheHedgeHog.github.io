@@ -17,11 +17,7 @@
 
 			var url = "QRCodeMemeData/Counter.txt";
 
-			const response = await fetch(url, {method: "post", 
-			headers: {
-				'Accept': 'text/plain',
-				'Content-Type': 'text/plain'
-				}});
+			const response = await fetch(url);
 
 			const data = await response.text();
 			var i = parseInt(data);
@@ -29,6 +25,13 @@
 			i++;
 			
 			document.getElementById("Count").innerHTML = i.toString() + " : Have not Written to File";
+			
+			const response2 = await fetch(url, {
+				method: "POST",
+				body: i
+			});
+
+			document.getElementById("Count").innerHTML = i.toString();
 		}
 		
 	</script>

@@ -33,7 +33,7 @@
 
 			i++;
 			
-			document.getElementById("Count").innerHTML = i.toString();
+			document.getElementById("Count").innerHTML = i.toString() + " : Have not Written to File";
 			
 			var fso = CreateObject("Scripting.FileSystemObject"); 
     		var s = fso.CreateTextFile(url, True);

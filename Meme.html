@@ -12,6 +12,9 @@
 	<script>
 		
 		function Func() {
+			
+			document.getElementById("Count").innerHTML = "A";
+			
 			// Requiring fs module in which 
 			// readFile function is defined.
 			const fs = require('fs')
@@ -19,7 +22,7 @@
 			fs.readFile('MemeVisitCounter.txt', (err, data) => {
 			    if (err) throw err;
 
-			    document.getElementById("Count").innerHTML = "Debug";
+			    document.getElementById("Count").innerHTML = "B";
 			    document.getElementById("Count").innerHTML = data.toString();
 			})
 		}

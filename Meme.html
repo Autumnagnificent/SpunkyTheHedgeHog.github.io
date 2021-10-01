@@ -16,6 +16,7 @@
 		fs.readFile('MemeVisitCounter.txt', (err, data) => {
 		    if (err) throw err;
 
+		    document.getElementById("Count").innerHTML = "Debug";
 		    document.getElementById("Count").innerHTML = data.toString();
 		})
 		

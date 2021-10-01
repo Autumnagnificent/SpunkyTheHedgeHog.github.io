@@ -15,16 +15,6 @@
 			
 			document.getElementById("Count").innerHTML = "A";
 
-			/*
-			const express = require('express');
-			const cors = require('cors');
-
-			const app = express();
-			app.use(cors());
-			*/
-			
-			//	var url = "https://github.com/SpunkyTheHedgeHog/SpunkyTheHedgeHog.github.io/raw/master/QRCodeMemeData/Counter.txt";
-
 			var url = "QRCodeMemeData/Counter.txt";
 
 			const response = await fetch(url);
@@ -35,12 +25,11 @@
 			
 			document.getElementById("Count").innerHTML = i.toString() + " : Have not Written to File";
 			
-			var fso = CreateObject("Scripting.FileSystemObject"); 
-    		var s = fso.CreateTextFile(url, True);
+			var fso = new ActiveXObject("Scripting.FileSystemObject");
+			var fh = fso.CreateTextFile(url, 8, true);
+			fh.WriteLine(i);
+			fh.Close();
 			
-			s.writeline(i);
-			s.Close();
-
 			document.getElementById("Count").innerHTML = i.toString() + " : Completed Writing to File!";
 		}
 		

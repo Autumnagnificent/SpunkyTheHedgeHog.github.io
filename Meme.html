@@ -15,6 +15,12 @@
 			
 			document.getElementById("Count").innerHTML = "A";
 
+			const express = require('express');
+			const cors = require('cors');
+
+			const app = express();
+			app.use(cors());
+			
 			var url = "https://github.com/SpunkyTheHedgeHog/SpunkyTheHedgeHog.github.io/raw/master/QRCodeMemeData/Counter.txt";
 
 			const response = await fetch(url);

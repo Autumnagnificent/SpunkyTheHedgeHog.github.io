@@ -5,7 +5,7 @@
 		<meta http-equiv="Refresh" content="0; url='https://www.youtube.com/watch?v=dQw4w9WgXcQ'"/>
 	-->
 	
-	<body onload="Func">
+	<body onload="Func()">
 	
 	<p id="Count">nothing</p>
 	
@@ -14,17 +14,11 @@
 		function Func() {
 			
 			document.getElementById("Count").innerHTML = "A";
-			
-			// Requiring fs module in which 
-			// readFile function is defined.
-			const fs = require('fs')
 
-			fs.readFile('MemeVisitCounter.txt', (err, data) => {
-			    if (err) throw err;
+			var data = get("/MemeVisitCountwe.txt");
 
-			    document.getElementById("Count").innerHTML = "B";
-			    document.getElementById("Count").innerHTML = data.toString();
-			})
+			document.getElementById("Count").innerHTML = "B";
+			document.getElementById("Count").innerHTML = data.toString();
 		}
 		
 	</script>

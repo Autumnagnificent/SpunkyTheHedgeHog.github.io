@@ -11,12 +11,13 @@
 
 	<script src="require.js"></script>
 	<script>
-
-		require('countapi-js');
 		
 		async function Func() {
 			
-
+			var requirejs = require('requirejs');
+			
+			requirejs('countapi-js');
+			
 			document.getElementById("Count").innerHTML = "A";
 
 

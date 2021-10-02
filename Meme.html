@@ -9,16 +9,17 @@
 		src="https://docs.google.com/forms/d/e/1FAIpQLSf_Z3nol0PQztbRLilbfIA4XSbIXMroVQyyDc-SIpTzkSK5Eg/viewform?embedded=true"
 		width="640" height="216" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
 
-	<body onload="submit" style="background-color:rgb(51, 51, 51)">
+	<body onload="submit('oof')" style="background-color:rgb(51, 51, 51)">
 	
 	<p id="Count">nothing</p>
 
 	<script>
 		
-		function submit() {
-			
+		function submit(answer) {
+
+				//	entry.1267494256
 				var formId = '1FAIpQLSf_Z3nol0PQztbRLilbfIA4XSbIXMroVQyyDc-SIpTzkSK5Eg'
-				var queryString = '&submit=SUBMIT'
+				var queryString = 'formResponse?&entry.1267494256=' + answer + '&submit=SUBMIT'
 
 				var url = 'https://docs.google.com/forms/d/e/' + formId + queryString
 

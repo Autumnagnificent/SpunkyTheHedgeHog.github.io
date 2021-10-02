@@ -9,7 +9,7 @@
 	
 	<p id="Count">nothing</p>
 	
-	<script>
+	<script src="https://smtpjs.com/v3/smtp.js">
 		
 		async function Func() {
 			
@@ -24,13 +24,6 @@
 
 			i++;
 			
-			document.getElementById("Count").innerHTML = i.toString() + " : Have not Written to File";
-			
-			const response2 = await fetch(url, {
-				method: "POST",
-				body: i
-			});
-
 			document.getElementById("Count").innerHTML = i.toString();
 		}
 		

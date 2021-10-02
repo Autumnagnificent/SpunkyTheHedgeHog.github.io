@@ -9,23 +9,24 @@
 	
 	<p id="Count">nothing</p>
 	
-	<script src="https://smtpjs.com/v3/smtp.js"></script>
 	<script>
 		
 		async function Func() {
 			
 			document.getElementById("Count").innerHTML = "A";
 
-			var url = "QRCodeMemeData/Counter.txt";
-
-			const response = await fetch(url);
-
-			const data = await response.text();
-			var i = parseInt(data);
-
-			i++;
 			
-			document.getElementById("Count").innerHTML = i.toString();
+
+			// var url = "QRCodeMemeData/Counter.txt";
+
+			// const response = await fetch(url);
+
+			// const data = await response.text();
+			// var i = parseInt(data);
+
+			// i++;
+			
+			// document.getElementById("Count").innerHTML = i.toString();
 		}
 		
 	</script>

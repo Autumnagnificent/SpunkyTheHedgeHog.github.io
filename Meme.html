@@ -9,12 +9,14 @@
 	
 	<p id="Count">nothing</p>
 
-	<script src="package-lock.json"></script>
+	<script src="require.js"></script>
 	<script>
 		
 		async function Func() {
 			
 			document.getElementById("Count").innerHTML = "A";
+
+			const countapi = require('countapi-js');
 
 			document.getElementById("Count").innerHTML = "B";
 

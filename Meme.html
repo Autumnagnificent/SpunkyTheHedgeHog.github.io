@@ -17,8 +17,7 @@
 			document.getElementById("Count").innerHTML = "A";
 
 			var requirejs = require('requirejs');
-			
-			requirejs(['countapi-js']);
+			var countapi = requirejs('countapi-js');
 			
 			document.getElementById("Count").innerHTML = "B";
 

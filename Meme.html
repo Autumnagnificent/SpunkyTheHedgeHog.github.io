@@ -11,13 +11,11 @@
 	<p id="Count">nothing</p>
 
 	<script src="require.js"></script>
-	<script type="module">
+	<script type="module" src="/node_modules/countapi-js">
 		
 		async function Func() {
 			
 			document.getElementById("Count").innerHTML = "A";
-
-			import countapi from '/node_modules/countapi-js';
 
 			document.getElementById("Count").innerHTML = "B";
 

@@ -14,11 +14,13 @@
 		
 		async function Func() {
 			
+			document.getElementById("Count").innerHTML = "A";
+
 			var requirejs = require('requirejs');
 			
-			requirejs('countapi-js');
+			requirejs(['countapi-js']);
 			
-			document.getElementById("Count").innerHTML = "A";
+			document.getElementById("Count").innerHTML = "B";
 
 
 			// var url = "QRCodeMemeData/Counter.txt";

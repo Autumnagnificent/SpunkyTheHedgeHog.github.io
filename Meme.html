@@ -10,16 +10,17 @@
 	<p id="Count">nothing</p>
 
 	<script src="require.js"></script>
+	<script src="index.js"></script>
 	<script>
-		
-		var requirejs = require('requirejs');
 		
 		async function Func() {
 			
 			document.getElementById("Count").innerHTML = "A";
 
-			var countapi = requirejs('countapi-js');
-			
+			// var requirejs = require('requirejs');
+			// var countapi = requirejs('countapi-js');
+			require('countapi-js');
+
 			document.getElementById("Count").innerHTML = "B";
 
 

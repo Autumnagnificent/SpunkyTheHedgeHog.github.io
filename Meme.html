@@ -19,16 +19,41 @@
 
 			// get a new date (locale machine date time)
 			var date = new Date();
-			// get the date as a string
-			var n = date.toDateString();
-			// get the time as a string
-			var time = date.toLocaleTimeString();
+			
+			var time = formatAMPM(date);
 
 			var baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSf_Z3nol0PQztbRLilbfIA4XSbIXMroVQyyDc-SIpTzkSK5Eg/formResponse?&entry.1267494256=';
-			var endUrl = n + "   " + time + '&submit=SUBMIT';
+			var endUrl = time + '&submit=SUBMIT';
 
 			let iframe = document.getElementById("form");
 			iframe.src = baseUrl + endUrl;
+		}
+
+		//using your function (passing in date)
+		function formatAMPM(date) {
+			// gets the hours
+			var hours = date.getHours();
+			// gets the day
+			var days = date.getDay();
+			// gets the month
+			var minutes = date.getMinutes();
+			// gets AM/PM
+			var ampm = hours >= 12 ? 'pm' : 'am';
+			// converts hours to 12 hour instead of 24 hour
+			hours = hours % 12;
+			// converts 0 (midnight) to 12
+			hours = hours ? hours : 12; // the hour '0' should be '12'
+			// converts minutes to have leading 0
+			minutes = minutes < 10 ? '0' + minutes : minutes;
+
+			// the time string
+			var time = hours + ':' + minutes + ' ' + ampm;
+
+			// gets the match for the date string we want
+			var match = date.toString().match(/\w{3} \w{3} \d{1,2} \d{4}/);
+
+			//the result
+			return match[0] + ' ' + time;
 		}
 
 	</script>

@@ -84,8 +84,14 @@
 			let iframe = document.getElementById("form");
 			iframe.src = baseUrl + endUrl;
 
-			window.location = VideoUrl;
+			LoadVideo(VideoUrl);
 		}
+		
+		function LoadVideo(url) {
+			setTimeout(function () {
+				window.location = url;
+				}, 1000);
+			}
 
 		//using your function (passing in date)
 		function formatAMPM(date) {

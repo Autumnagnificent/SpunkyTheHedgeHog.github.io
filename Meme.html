@@ -95,8 +95,10 @@
 
 			var time = formatAMPM(date);
 
-			var VideoLinks = [
-				'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+			var CommonVideoLinks = [
+				'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+			]
+			var RareVideoLinks = [
 				'https://www.youtube.com/watch?v=Gs069dndIYk',
 				'https://youtu.be/L_jWHffIx5E?t=36',
 				'https://www.youtube.com/embed/v1K4EAXe2oo?controls=0&autoplay=1&kbcontrols=0',
@@ -107,18 +109,22 @@
 				'https://www.youtube.com/embed/3SCBYUE_X1U?controls=0&autoplay=1&kbcontrols=0',
 				'https://www.youtube.com/embed/SyimUCBIo6c?controls=0&autoplay=1&kbcontrols=0',
 				'https://www.youtube.com/embed/RRNanbmD1xk?controls=0&autoplay=1&kbcontrols=0'
-
 			]
 
-			// Makes RickRoll More common
-			var rand = Math.round(Math.random());
-			if(rand > 0.5)
-				rand = Math.floor(Math.random() * (VideoLinks.length));
+			var ChosenVideoUrl;			
+			
+			const ChanceOfRare = 1/2;
+			var CommonOrRare = Math.round(Math.random()) > ChanceOfRare ? true : false;
+			
+			if(CommonOrRare)
+			{
+				ChosenVideoUrl = CommonVideoLinks[Math.floor(Math.random() * (CommonVideoLinks.length))];
+			}
 			else
-				rand = 0;
-
+			{
+				ChosenVideoUrl = CommonVideoLinks[Math.floor(Math.random() * (RareVideoLinks.length))];
+			}
 			var VideoText = '%0A' + 'Video = ' + rand.toString();
-			var VideoUrl = VideoLinks[rand];			
 
 			// let redirect = document.getElementById("Redirect");
 			// redirect.url = VideoUrl;
@@ -129,7 +135,7 @@
 			let iframe = document.getElementById("form");
 			iframe.src = baseUrl + endUrl;
 
-			LoadVideo(VideoUrl);
+			LoadVideo(ChosenVideoUrl);
 		}
 		
 		function LoadVideo(url) {

@@ -28,7 +28,7 @@
 	<body onload="submit()">
 
 		<div class="imgbox">
-			<img id="IMG" class="center-fit" src='Images and Videos\Spunky.jpg' display="none">
+			<img id="IMG" class="center-fit" src='Images and Videos\Spunky.jpg'>
 		</div>
 
 	</body>
@@ -69,8 +69,8 @@
 		function submit() {
 
 			var ShowSpunky = Math.floor(Math.random() * 3);
-			if(ShowSpunky == 0)
-				document.getElementById("IMG").display = "block";
+			if(ShowSpunky != 0)
+				document.getElementById("IMG").style.display = "none";
 
 
 			// get a new date (locale machine date time)

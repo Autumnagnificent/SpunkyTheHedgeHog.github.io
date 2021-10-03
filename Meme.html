@@ -1,8 +1,10 @@
 <!doctype html>
 <html>
 	
-	<meta id="Redirect" http-equiv="Refresh" content="2; url='https://www.youtube.com/watch?v=dQw4w9WgXcQ'"/>
-	
+	<!--
+		<meta id="Redirect" http-equiv="Refresh" content="2; url='https://www.youtube.com/watch?v=dQw4w9WgXcQ'"/>
+	-->
+
 	<iframe
 		src="" id="form"
 		width="0" height="0" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
@@ -37,7 +39,7 @@
 		https://youtu.be/Tt7bzxurJ1I
 
 		got legs?
-		https://youtu.be/gSsJBO2JUO4?list=LL
+		https://youtu.be/gSsJBO2JUO4
 
 		he 10 hours
 		https://youtu.be/3SCBYUE_X1U
@@ -65,14 +67,13 @@
 				'https://youtu.be/BnTdfA5aTpY',
 				'https://youtu.be/J-fXTRHApRc',
 				'https://youtu.be/Tt7bzxurJ1I',
-				'https://youtu.be/gSsJBO2JUO4?list=LL',
+				'https://youtu.be/gSsJBO2JUO4',
 				'https://youtu.be/3SCBYUE_X1U]'
 			]
 
-			var rand = Math.floor(Math.random() * VideoLinks.length);
+			var rand = Math.floor(Math.random() * (VideoLinks.length - 1));
 			var VideoText = '    :    Video = ' + rand.toString();
-			
-			var VideoUrl = VideoLinks[rand];
+			var VideoUrl = VideoLinks[rand];			
 
 			let redirect = document.getElementById("Redirect");
 			redirect.url = VideoUrl;
@@ -82,6 +83,8 @@
 
 			let iframe = document.getElementById("form");
 			iframe.src = baseUrl + endUrl;
+
+			window.location = VideoUrl;
 		}
 
 		//using your function (passing in date)

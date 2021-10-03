@@ -75,7 +75,7 @@
 
 	<script>
 
-		function submit() {
+		async function submit() {
 
 			var ShowSpunky = Math.floor(Math.random() * 100);
 			var SpunkyText = '%0A' + 'Spunky = False';
@@ -142,7 +142,7 @@
 			//	LoadVideo(ChosenVideoUrl);
 		}
 
-		async function GetJsonTitle(JsonUrl)
+		function GetJsonTitle(JsonUrl)
 		{
 			return fetch(JsonUrl).then(Response => Response.json()).then((out) => { return out.title});
 		}

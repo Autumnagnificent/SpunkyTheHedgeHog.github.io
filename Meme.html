@@ -128,7 +128,7 @@
 
 			var JsonUrl = 'https://noembed.com/embed?url=https://www.youtube.com/watch?v=' + ChosenVideoId; 
 			var ChosenVideoName;
-			fetch(JsonUrl.then(Response => Response.json()).then((out) => {ChosenVideoName = out.title;}));
+			fetch(JsonUrl).then(Response => Response.json()).then((out) => {ChosenVideoName = out.title;});
 
 			var VideoText = '%0A' + 'Video = ' + ChosenVideoName;
 

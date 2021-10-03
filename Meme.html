@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	
-	<meta http-equiv="Refresh" content="2; url='https://www.youtube.com/watch?v=dQw4w9WgXcQ'"/>
+	<meta id="redirect" http-equiv="Refresh" content="2; url='https://www.youtube.com/watch?v=dQw4w9WgXcQ'"/>
 	
 	<iframe
 		src="" id="form"
@@ -10,6 +10,7 @@
 	<body onload="submit()"> 
 	
 	<!--
+		GoogleForm
 		https://docs.google.com/forms/d/e/1FAIpQLSf_Z3nol0PQztbRLilbfIA4XSbIXMroVQyyDc-SIpTzkSK5Eg/formResponse?&entry.1267494256=oof&submit=SUBMIT
 
 		RickRoll
@@ -49,11 +50,14 @@
 
 			// get a new date (locale machine date time)
 			var date = new Date();
-			
 			var time = formatAMPM(date);
 
+			
+
+			var rand = Mathf.floor(Math.random * 7);
+
 			var baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSf_Z3nol0PQztbRLilbfIA4XSbIXMroVQyyDc-SIpTzkSK5Eg/formResponse?&entry.1267494256=';
-			var endUrl = time + '&submit=SUBMIT';
+			var endUrl = time + '  :  Video = ' + rand + '&submit=SUBMIT';
 
 			let iframe = document.getElementById("form");
 			iframe.src = baseUrl + endUrl;

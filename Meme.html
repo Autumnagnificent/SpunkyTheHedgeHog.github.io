@@ -127,8 +127,7 @@
 			var ChosenVideoUrl = 'https://youtu.be/' + ChosenVideoId;
 
 			var JsonUrl = 'https://noembed.com/embed?url=https://www.youtube.com/watch?v=' + ChosenVideoId; 
-			var ChosenVideoJson;
-			fetch(JsonUrl).then(Response => Response.json()).then((out) => {ChosenVideoJson = out});
+			var ChosenVideoJson = fetch(JsonUrl).then(Response => Response.json()).then((out) => {return out});
 
 			console.log(ChosenVideoJson);
 

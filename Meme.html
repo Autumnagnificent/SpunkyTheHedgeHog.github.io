@@ -125,7 +125,7 @@
 			}
 
 			var ChosenVideoUrl = 'https://youtu.be/' + ChosenVideoId;
-			var ChosenVideoName = fetch('https://noembed.com/embed?url=https://www.youtube.com/watch?v=' + ChosenVideoId).title;
+			var ChosenVideoName = $.getJSON('https://noembed.com/embed?url=https://www.youtube.com/watch?v=' + ChosenVideoId, { format: 'json', url: url }, function (data) {return data.title;});
 
 			var VideoText = '%0A' + 'Video = ' + ChosenVideoName;
 

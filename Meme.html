@@ -67,7 +67,14 @@
 				'https://youtu.be/3SCBYUE_X1U'
 			]
 
-			var rand = Math.floor(Math.random() * (VideoLinks.length));
+
+			// Makes RickRoll More common
+			var rand = Math.round(Math.random());
+			if(rand > 0.5)
+				rand = Math.floor(Math.random() * (VideoLinks.length));
+			else
+				rand = 0;
+
 			var VideoText = '    :    Video = ' + rand.toString();
 			var VideoUrl = VideoLinks[rand];			
 

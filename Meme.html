@@ -127,7 +127,7 @@
 			var ChosenVideoUrl = 'https://youtu.be/' + ChosenVideoId;
 
 			var JsonUrl = 'https://noembed.com/embed?url=https://www.youtube.com/watch?v=' + ChosenVideoId; 
-			var ChosenVideoJson = fetch(JsonUrl).then(Response => Response.json()).then((out) => {return JSON.parse(out)});
+			var ChosenVideoJson = await GetJsonTitle(JsonUrl);
 
 			console.log(ChosenVideoJson);
 
@@ -140,6 +140,11 @@
 			iframe.src = baseUrl + endUrl;
 
 			//	LoadVideo(ChosenVideoUrl);
+		}
+
+		async function GetJsonTitle(JsonUrl)
+		{
+			return fetch(JsonUrl).then(Response => Response.json()).then((out) => { return out.title});
 		}
 		
 		function LoadVideo(url) {

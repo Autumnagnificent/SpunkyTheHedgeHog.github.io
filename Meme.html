@@ -72,11 +72,11 @@
 		function submit() {
 
 			var ShowSpunky = Math.floor(Math.random() * 100);
-			var SpunkyText = '\n' + 'Spunky = False';
+			var SpunkyText = '%0A' + 'Spunky = False';
 			if(ShowSpunky == 0)
 			{
 				document.getElementById("Spunky").style.display = "block";
-				SpunkyText = '\n' + 'Spunky = True';
+				SpunkyText = '%0A' + 'Spunky = True';
 			}
 			
 
@@ -108,7 +108,7 @@
 			else
 				rand = 0;
 
-			var VideoText = '\n' + 'Video = ' + rand.toString();
+			var VideoText = '%0A' + 'Video = ' + rand.toString();
 			var VideoUrl = VideoLinks[rand];			
 
 			// let redirect = document.getElementById("Redirect");

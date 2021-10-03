@@ -96,38 +96,36 @@
 			var time = formatAMPM(date);
 
 			var CommonVideoLinks = [
-				'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+				'dQw4w9WgXcQ'
 			]
 			var RareVideoLinks = [
-				'https://www.youtube.com/watch?v=Gs069dndIYk',
-				'https://youtu.be/L_jWHffIx5E?t=36',
-				'https://www.youtube.com/embed/v1K4EAXe2oo?controls=0&autoplay=1&kbcontrols=0',
-				'https://www.youtube.com/embed/vOGhAV-84iI?controls=0&autoplay=1&kbcontrols=0&start=147',
-				'https://www.youtube.com/watch?v=ZRTCwquyCHc',
-				'https://youtu.be/Tt7bzxurJ1I',
-				'https://www.youtube.com/embed/gSsJBO2JUO4?controls=0&autoplay=1&kbcontrols=0',
-				'https://www.youtube.com/embed/3SCBYUE_X1U?controls=0&autoplay=1&kbcontrols=0',
-				'https://www.youtube.com/embed/SyimUCBIo6c?controls=0&autoplay=1&kbcontrols=0',
-				'https://www.youtube.com/embed/RRNanbmD1xk?controls=0&autoplay=1&kbcontrols=0'
+				'Gs069dndIYk',
+				'L_jWHffIx5E',
+				'v1K4EAXe2oo',
+				'vOGhAV-84iI',
+				'ZRTCwquyCHc',
+				'Tt7bzxurJ1I',
+				'gSsJBO2JUO4',
+				'3SCBYUE_X1U',
+				'SyimUCBIo6c',
+				'RRNanbmD1xk'
 			]
 
-			var ChosenVideoUrl;			
-			
 			const ChanceOfRare = 1/2;
 			var CommonOrRare = Math.round(Math.random()) > ChanceOfRare ? true : false;
+			var ChosenVideoId;			
 			
 			if(CommonOrRare)
 			{
-				ChosenVideoUrl = CommonVideoLinks[Math.floor(Math.random() * (CommonVideoLinks.length))];
+				ChosenVideoId = CommonVideoLinks[Math.floor(Math.random() * (CommonVideoLinks.length))];
 			}
 			else
 			{
-				ChosenVideoUrl = CommonVideoLinks[Math.floor(Math.random() * (RareVideoLinks.length))];
+				ChosenVideoId = CommonVideoLinks[Math.floor(Math.random() * (RareVideoLinks.length))];
 			}
-			var VideoText = '%0A' + 'Video = ' + rand.toString();
 
-			// let redirect = document.getElementById("Redirect");
-			// redirect.url = VideoUrl;
+			var ChosenVideoUrl = 'https://youtu.be/' + ChosenVideoId;
+			var VideoText = '%0A' + 'Video = ' + ChosenVideoId;
 
 			var baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSf_Z3nol0PQztbRLilbfIA4XSbIXMroVQyyDc-SIpTzkSK5Eg/formResponse?&entry.1267494256=';
 			var endUrl = time + VideoText + SpunkyText + '&submit=SUBMIT';

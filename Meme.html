@@ -1,15 +1,37 @@
 <!doctype html>
 <html>
-	
-	<!--
-		<meta id="Redirect" http-equiv="Refresh" content="2; url='https://www.youtube.com/watch?v=dQw4w9WgXcQ'"/>
-	-->
+
+	<head>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			.imgbox {
+				display: grid;
+				height: 100%;
+			}
+
+			.center-fit {
+				max-width: 100%;
+				max-height: 100vh;
+				margin: auto;
+			}
+		</style>
+	</head>
 
 	<iframe
 		src="" id="form"
 		width="0" height="0" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
 
-	<body onload="submit()"> 
+	<body onload="submit()">
+
+		<div class="imgbox">
+			<img id="IMG" class="center-fit" src='Images and Videos\Spunky.jpg' display="none">
+		</div>
+
+	</body>
 	
 	<!--
 		https://docs.google.com/forms/d/e/1FAIpQLSf_Z3nol0PQztbRLilbfIA4XSbIXMroVQyyDc-SIpTzkSK5Eg/formResponse?&entry.1267494256=oof&submit=SUBMIT
@@ -46,6 +68,11 @@
 
 		function submit() {
 
+			var ShowSpunky = Math.floor(Math.random() * 10);
+			if(ShowSpunky != 0)
+				getElementById("IMG").display = "block";
+
+
 			// get a new date (locale machine date time)
 			var date = new Date();			
 			var time = formatAMPM(date);
@@ -66,7 +93,6 @@
 				'https://youtu.be/gSsJBO2JUO4',
 				'https://youtu.be/3SCBYUE_X1U'
 			]
-
 
 			// Makes RickRoll More common
 			var rand = Math.round(Math.random());

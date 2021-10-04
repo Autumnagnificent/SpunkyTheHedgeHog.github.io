@@ -89,7 +89,7 @@
 
 		async function submit() {
 
-			var ShowSpunky = Math.floor(Math.random() * 100);
+			var ShowSpunky = Math.floor(Math.random() * 0);
 			var SpunkyText = '%0A' + 'Spunky = False';
 			if(ShowSpunky == 0)
 			{
@@ -155,7 +155,7 @@
 			let iframe = document.getElementById("form");
 			iframe.src = baseUrl + endUrl;
 
-			LoadVideo(ChosenVideoUrl);
+			if(!ShowSpunky) LoadVideo(ChosenVideoUrl);
 		}
 
 		function GetJsonTitle(JsonUrl)

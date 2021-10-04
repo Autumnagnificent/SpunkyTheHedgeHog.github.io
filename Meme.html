@@ -156,10 +156,12 @@
 			var JsonUrl = 'https://noembed.com/embed?url=https://www.youtube.com/watch?v=' + ChosenVideoId; 
 			var ChosenVideoTitle = await GetJsonTitle(JsonUrl);
 
+			var VideoText = ChosenVideoTitle;
 			if(ShowSpunky) VideoText = '';
 			
 			var baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSf_Z3nol0PQztbRLilbfIA4XSbIXMroVQyyDc-SIpTzkSK5Eg/formResponse?&entry.1267494256=';
-			var endUrl =  ChosenVideoTitle + SpunkyText + '%0A' + time + '&submit=SUBMIT';
+			var endUrl = VideoText + SpunkyText + '%0A' + time + '&submit=SUBMIT';
+
 
 			let iframe = document.getElementById("form");
 			iframe.src = baseUrl + endUrl;

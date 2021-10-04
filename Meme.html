@@ -89,9 +89,9 @@
 
 		async function submit() {
 
-			var ShowSpunky = Math.floor(Math.random() * 0);
+			var SpunkyShow = Math.floor(Math.random() * 0) == 0;
 			var SpunkyText = '%0A' + 'Spunky = False';
-			if(ShowSpunky == 0)
+			if(ShowSpunky)
 			{
 				document.getElementById("Spunky").style.display = "block";
 				SpunkyText = '%0A' + 'Spunky = True';

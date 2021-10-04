@@ -158,9 +158,9 @@
 			if(!ShowSpunky) LoadVideo(ChosenVideoUrl);
 		}
 
-		function GetJsonTitle(JsonUrl)
+		async function GetJsonTitle(JsonUrl)
 		{
-			return fetch(JsonUrl).then(Response => Response.json()).then((out) => { return out.title});
+			return await fetch(JsonUrl).then(Response => Response.json()).then((out) => { return out.title});
 		}
 		
 		function LoadVideo(url) {

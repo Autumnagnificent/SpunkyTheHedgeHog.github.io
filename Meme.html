@@ -98,7 +98,6 @@
 				document.getElementById("Spunky").style.display = "block";
 				SpunkyText = '%0A' + 'Spunky = True';
 			}
-			
 
 			// get a new date (locale machine date time)
 			var date = new Date();			
@@ -148,7 +147,7 @@
 			var ChosenVideoTitle = await GetJsonTitle(JsonUrl);
 
 			var VideoText = '%0A' + 'Video = ' + ChosenVideoTitle;
-			if(ShowSpunky) VideoText = "%0A';
+			if(ShowSpunky) VideoText = '%0A';
 			
 			var baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSf_Z3nol0PQztbRLilbfIA4XSbIXMroVQyyDc-SIpTzkSK5Eg/formResponse?&entry.1267494256=';
 			var endUrl = time + VideoText + SpunkyText + '&submit=SUBMIT';

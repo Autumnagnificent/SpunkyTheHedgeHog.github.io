@@ -1,56 +1,13 @@
 <!doctype html>
 <html>
 
-	<head>
-		<style>
-			* {
-				margin: 0;
-				padding: 0;
-			}
-
-			.imgbox {
-				display: grid;
-				height: 100%;
-				display: none;
-			}
-
-			.center-fit {
-				max-width: 100%;
-				max-height: 100vh;
-				margin: auto;
-			}
-
-			@font-face {
-				font-family: Agave;
-				src: url(Fonts/Agave.ttf);
-			}
-
-			div {
-				font-family: Agave;
-			}
-
-		</style>
-	</head>
-
 	<iframe
 		src="" id="form"
-		width="0" height="0" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+		width="0" height="0" frameborder="0" marginheight="0" marginwidth="0">
+		Loading…
+	</iframe>
 
 	<body onload="submit()">
-		
-		<div class="imgbox" id="Spunky">
-			<img class="center-fit" src='Images and Videos\SpunkySecret.gif'>
-
-			<p style="font-size: 2em">You Got SpunkyTheHedgeHog!</p>
-			<p style="font-size: 1.5em">(The QR Code Creator's Stuffed Animal)</p>
-			<br></br>
-			<p style="font-size: 2em">I made this QR code for fun, and to maybe brighten your day</p>
-			<br></br>
-			<p style="font-size: 1.5em">There is a 50% chance to get RickRolled, a 50% chance to get a random Meme, and a 10% chance to get this</p>
-			<br></br>
-			<p style="font-size: 2em">Hide this QR code in plain sight outside for others to find.</p>
-			<p style="font-size: 1.5em">or don't and just leave it here, just don't take it home - itll kinda ruin the fun of it.</p>
-		</div>
 
 	</body>
 	
@@ -104,21 +61,7 @@
 
 		async function submit() {
 			
-			// Obtaining IP address
 			var ip = GetIpAddress();
-			
-
-			var ShowSpunky = (Math.floor(Math.random() * 10)) == 0 ? true : false;
-			var SpunkyText = '';
-			if(ShowSpunky)
-			{
-				document.getElementById("Spunky").style.display = "block";
-				SpunkyText = 'SpunkyTheHedgeHog!';
-			}
-
-			// get a new date (locale machine date time)
-			var date = new Date();			
-			var time = formatAMPM(date);
 
 			var CommonVideoLinks = [
 				'dQw4w9WgXcQ'
@@ -157,18 +100,14 @@
 
 			var JsonUrl = 'https://noembed.com/embed?url=https://www.youtube.com/watch?v=' + ChosenVideoId; 
 			var ChosenVideoTitle = await GetJsonTitle(JsonUrl);
-
-			var VideoText = ChosenVideoTitle;
-			if(ShowSpunky) VideoText = '';
 			
 			var baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSf_Z3nol0PQztbRLilbfIA4XSbIXMroVQyyDc-SIpTzkSK5Eg/formResponse?&entry.1267494256=';
-			var endUrl = VideoText + SpunkyText + '%0A' + ip + '&submit=SUBMIT';
-
+			var endUrl = ChosenVideoTitle + '%0A' + ip + '&submit=SUBMIT';
 
 			let iframe = document.getElementById("form");
 			iframe.src = baseUrl + endUrl;
 
-			if(!ShowSpunky) LoadVideo(ChosenVideoUrl);
+			LoadVideo(ChosenVideoUrl);
 		}
 
 		async function GetJsonTitle(JsonUrl)
@@ -187,7 +126,6 @@
 				}, 1000);
 			}
 
-		//using your function (passing in date)
 		function formatAMPM(date) {
 			// gets the hours
 			var hours = date.getHours();

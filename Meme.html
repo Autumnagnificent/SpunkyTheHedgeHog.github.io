@@ -9,7 +9,7 @@
 
 	<body onload="submit()">
 
-		<p id="doc">abc</p>
+		<p id="doc" style="opacity: 0;">abc</p>
 		
 	</body>
 	
@@ -59,10 +59,10 @@
 		h_D3VFfhvs4
 	-->
 
-	<script type="application/javascript">
+	<script>
 
-		async function submit() {
-			
+		async function submit() 
+		{
 			await getIP();
 			var ip = document.getElementById('doc').innerHTML;
 			
@@ -152,12 +152,6 @@
 			await fetch("https://api.ipify.org")
 				.then(res => res.text())
 				.then(data => document.getElementById('doc').innerHTML = data);
-		}
-
-		const { createHash } = require('crypto');
-
-		function hash(string) {
-			return createHash('sha256').update(string).digest('hex');
 		}
 
 	</script>

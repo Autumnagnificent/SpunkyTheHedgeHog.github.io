@@ -61,7 +61,7 @@
 
 		async function submit() {
 			
-			var ip = GetIpAddress();
+			var ip = getIP();
 
 			var CommonVideoLinks = [
 				'dQw4w9WgXcQ'
@@ -78,9 +78,7 @@
 				'SyimUCBIo6c',
 				'RRNanbmD1xk',
 				'qMQ-y9dHE2k',
-				'hgwpZvTWLmE',
-				'8_Dm5xkHzio'
-				/*'h_D3VFfhvs4?t=56'*/
+				'hgwpZvTWLmE'
 			]
 
 			const ChanceOfRare = 1/2;
@@ -115,9 +113,11 @@
 			return await fetch(JsonUrl).then(Response => Response.json()).then((out) => { return out.title});
 		}
 
-		async function GetIpAddress()
+		async function getIP()
 		{
-			return await fetch('https://api.ipify.org/?format=json').then(Response => Response.json()).then((out) => { return out.ip});
+			const response = await fetch('http://api.ipify.org/?format=json');
+			const data = await response.json();
+			return data;
 		}
 		
 		function LoadVideo(url) {

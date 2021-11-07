@@ -57,11 +57,13 @@
 		h_D3VFfhvs4
 	-->
 
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+
 	<script>
 
 		async function submit() {
 			
-			var ip = getIP();
+			var ip = GetIp();
 
 			var CommonVideoLinks = [
 				'dQw4w9WgXcQ'
@@ -105,7 +107,7 @@
 			let iframe = document.getElementById("form");
 			iframe.src = baseUrl + endUrl;
 
-			LoadVideo(ChosenVideoUrl);
+			// LoadVideo(ChosenVideoUrl);
 		}
 
 		async function GetJsonTitle(JsonUrl)
@@ -113,11 +115,15 @@
 			return await fetch(JsonUrl).then(Response => Response.json()).then((out) => { return out.title});
 		}
 
-		async function getIP()
+		async function GetIp()
 		{
-			const response = await fetch('http://api.ipify.org/?format=json');
-			const data = await response.json();
-			return data;
+			var url = 'https://api.ipify.org?format=json';
+
+			fetch(url)
+				.then((response) => response.json())
+				.then((responseJSON) => {
+					console.log(responseJSON.ip);
+				});
 		}
 		
 		function LoadVideo(url) {

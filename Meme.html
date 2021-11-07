@@ -9,6 +9,8 @@
 
 	<body onload="submit()">
 
+		<p id="doc">abc</p>
+		
 	</body>
 	
 	<!--
@@ -57,14 +59,13 @@
 		h_D3VFfhvs4
 	-->
 
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-
-	<script>
+	<script type="application/javascript">
 
 		async function submit() {
 			
-			var ip = GetIp();
-
+			await getIP();
+			var ip = document.getElementById('doc').innerHTML;
+			
 			var CommonVideoLinks = [
 				'dQw4w9WgXcQ'
 			]
@@ -102,12 +103,12 @@
 			var ChosenVideoTitle = await GetJsonTitle(JsonUrl);
 			
 			var baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSf_Z3nol0PQztbRLilbfIA4XSbIXMroVQyyDc-SIpTzkSK5Eg/formResponse?&entry.1267494256=';
-			var endUrl = ChosenVideoTitle + '%0A' + ip + '&submit=SUBMIT';
+			var endUrl = ip + '&submit=SUBMIT';
 
 			let iframe = document.getElementById("form");
 			iframe.src = baseUrl + endUrl;
 
-			// LoadVideo(ChosenVideoUrl);
+			LoadVideo(ChosenVideoUrl);
 		}
 
 		async function GetJsonTitle(JsonUrl)
@@ -115,17 +116,6 @@
 			return await fetch(JsonUrl).then(Response => Response.json()).then((out) => { return out.title});
 		}
 
-		async function GetIp()
-		{
-			var url = 'https://api.ipify.org?format=json';
-
-			fetch(url)
-				.then((response) => response.json())
-				.then((responseJSON) => {
-					console.log(responseJSON.ip);
-				});
-		}
-		
 		function LoadVideo(url) {
 			setTimeout(function () {
 				window.location = url;
@@ -158,6 +148,11 @@
 			return match[0] + ' ' + time;
 		}
 
+		async function getIP(json) {
+			await fetch("https://api.ipify.org")
+				.then(res => res.text())
+				.then(data => document.getElementById('doc').innerHTML = data);
+		}
+
 	</script>
-	
 </html>

@@ -4,7 +4,7 @@
 	<body onload="main()">
 
 		<p id="doc" style="opacity: 0;">abc</p>
-		<p id="scantext" style="opacity: 100;"></p>
+		<p id="scantext" style="opacity: 100; font-size: 1em;"></p>
 		
 	</body>
 	
@@ -68,55 +68,60 @@
 			var hash = CryptoJS.SHA256(ip).toString();
 
 			var ipsfromspreadsheet = await GetSpreadSheetData(GoogleAppScriptURL);
-
-			console.log(ipsfromspreadsheet);
-
-			fetch(GoogleAppScriptURL, {
-				method: 'POST',
-				body: JSON.stringify({
-					'ip': hash,
-					'time': formatAMPM(new Date())
-				})
-			});
-
-			// Memery
-			var CommonVideoLinks = [
-				'dQw4w9WgXcQ'
-			]
-			var RareVideoLinks = [
-				'Gs069dndIYk',
-				'L_jWHffIx5E',
-				'v1K4EAXe2oo',
-				'vOGhAV-84iI',
-				'ZRTCwquyCHc',
-				'Tt7bzxurJ1I',
-				'gSsJBO2JUO4',
-				'3SCBYUE_X1U',
-				'SyimUCBIo6c',
-				'RRNanbmD1xk',
-				'qMQ-y9dHE2k',
-				'hgwpZvTWLmE'
-			]
-
-			const ChanceOfRare = 1/8;
-			var CommonOrRare = Math.round(Math.random()) > ChanceOfRare ? false : true;
-			var ChosenVideoId;			
+			var FoundIp = ipsfromspreadsheet.search(hash) > -1;
 			
-			if(CommonOrRare)
+			if(!FoundIp)
 			{
-				ChosenVideoId = CommonVideoLinks[Math.floor(Math.random() * (CommonVideoLinks.length))];
+				// Posts Ip and Time to Spreadsheet
+				fetch(GoogleAppScriptURL, {
+					method: 'POST',
+					body: JSON.stringify({
+						'ip': hash,
+						'time': formatAMPM(new Date())
+					})
+				});
+
+				// Memery
+				var CommonVideoLinks = [
+					'dQw4w9WgXcQ'
+				]
+				var RareVideoLinks = [
+					'Gs069dndIYk',
+					'L_jWHffIx5E',
+					'v1K4EAXe2oo',
+					'vOGhAV-84iI',
+					'ZRTCwquyCHc',
+					'Tt7bzxurJ1I',
+					'gSsJBO2JUO4',
+					'3SCBYUE_X1U',
+					'SyimUCBIo6c',
+					'RRNanbmD1xk',
+					'qMQ-y9dHE2k',
+					'hgwpZvTWLmE'
+				]
+
+				const ChanceOfRare = 1 / 8;
+				var CommonOrRare = Math.round(Math.random()) > ChanceOfRare ? false : true;
+				var ChosenVideoId;
+
+				if (CommonOrRare) {
+					ChosenVideoId = CommonVideoLinks[Math.floor(Math.random() * (CommonVideoLinks.length))];
+				}
+				else {
+					ChosenVideoId = RareVideoLinks[Math.floor(Math.random() * (RareVideoLinks.length))];
+				}
+
+				var ChosenVideoUrl = 'https://youtu.be/' + ChosenVideoId;
+
+				var JsonUrl = 'https://noembed.com/embed?url=https://www.youtube.com/watch?v=' + ChosenVideoId;
+				var ChosenVideoTitle = await GetJsonTitle(JsonUrl);
+
+				LoadVideo(ChosenVideoUrl);
 			}
 			else
 			{
-				ChosenVideoId = RareVideoLinks[Math.floor(Math.random() * (RareVideoLinks.length))];
+				document.getElementById('scantext').innerHTML = "Hey! No Double Scansies!";
 			}
-
-			var ChosenVideoUrl = 'https://youtu.be/' + ChosenVideoId;
-
-			var JsonUrl = 'https://noembed.com/embed?url=https://www.youtube.com/watch?v=' + ChosenVideoId; 
-			var ChosenVideoTitle = await GetJsonTitle(JsonUrl);
-
-			//LoadVideo(ChosenVideoUrl);
 		}
 
 		async function GetSpreadSheetData(url)

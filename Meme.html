@@ -61,6 +61,7 @@
 	-->
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script>
 		
 		async function submit() 
@@ -128,19 +129,22 @@
 			{
 				document.getElementById('scantext').innerHTML = "Hey! No Double Scannsies!";
 				console.log('Found Ip');
-
-				setTimeout(function(){
-					window.close();
-				}, 3000);
 			}
 		}
 
 		async function GetSpreadSheetData()
 		{
-			var GetSheetHashedIps = await fetch("https://script.google.com/macros/s/AKfycbyqRbuQoWI7AFltKG2DfU7RvEqWvemJiI9T1z7bkrJnv8CWXQ3vDkDKrcNzxJWcUQK5jA/exec",
-				{
-					mode: 'no-cors'
-				}).then(response => response.text());
+			// var GetSheetHashedIps = await fetch("https://script.google.com/macros/s/AKfycbyqRbuQoWI7AFltKG2DfU7RvEqWvemJiI9T1z7bkrJnv8CWXQ3vDkDKrcNzxJWcUQK5jA/exec",
+			// 	{
+			// 		mode: 'no-cors'
+			// 	}).then(response => response.text());
+
+			var GetSheetHashedIps = await $.ajax({
+				url: "https://script.google.com/macros/s/AKfycbyqRbuQoWI7AFltKG2DfU7RvEqWvemJiI9T1z7bkrJnv8CWXQ3vDkDKrcNzxJWcUQK5jA/exec",
+				type: "GET",
+				dataType: "text",
+				async: false
+			}).responseText;
 
 			return await GetSheetHashedIps;
 		}

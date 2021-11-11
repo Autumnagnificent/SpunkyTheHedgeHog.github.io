@@ -4,7 +4,10 @@
 	<head>
 		<style>
 			.center {
-				text-align: center;
+					margin: auto;
+					width: 100%;
+					padding: 0px;
+					text-align: center;
 			}
 		</style>
 	</head>
@@ -12,7 +15,7 @@
 	<body onload="main()">
 
 		<div class="center">
-			<p id="scantext" style="opacity: 100; font-size: 20vw; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, monospace;"></p>
+			<p id="scantext" style="opacity: 100; font-size: 15vw; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, monospace;"></p>
 		</div>
 		
 		<p id="doc" style="opacity: 0;">abc</p>
@@ -90,6 +93,7 @@
 						'ip': hash,
 						'time': formatAMPM(new Date())
 					})
+					
 				});
 
 				// Memery

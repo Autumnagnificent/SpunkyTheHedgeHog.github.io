@@ -10,6 +10,7 @@
 	<body onload="submit()">
 
 		<p id="doc" style="opacity: 0;">abc</p>
+		<p id="scantext" style="opacity: 100;"></p>
 		
 	</body>
 	
@@ -67,50 +68,81 @@
 			await getIP();
 			var ip = document.getElementById('doc').innerHTML;
 			var hash = CryptoJS.SHA256(ip);
-			
-			var CommonVideoLinks = [
-				'dQw4w9WgXcQ'
-			]
-			var RareVideoLinks = [
-				'Gs069dndIYk',
-				'L_jWHffIx5E',
-				'v1K4EAXe2oo',
-				'vOGhAV-84iI',
-				'ZRTCwquyCHc',
-				'Tt7bzxurJ1I',
-				'gSsJBO2JUO4',
-				'3SCBYUE_X1U',
-				'SyimUCBIo6c',
-				'RRNanbmD1xk',
-				'qMQ-y9dHE2k',
-				'hgwpZvTWLmE'
-			]
 
-			const ChanceOfRare = 1/8;
-			var CommonOrRare = Math.round(Math.random()) > ChanceOfRare ? false : true;
-			var ChosenVideoId;			
-			
-			if(CommonOrRare)
+			var ipsfromspreadsheet = await GetSpreadSheetData();
+
+			// console.log(await fetch("https://api.ipify.org"));
+			console.log(ipsfromspreadsheet);
+
+			var FoundIp = ipsfromspreadsheet.search(hash) > -1;
+
+			if (!FoundIp)
 			{
-				ChosenVideoId = CommonVideoLinks[Math.floor(Math.random() * (CommonVideoLinks.length))];
+				var CommonVideoLinks = [
+					'dQw4w9WgXcQ'
+				]
+				var RareVideoLinks = [
+					'Gs069dndIYk',
+					'L_jWHffIx5E',
+					'v1K4EAXe2oo',
+					'vOGhAV-84iI',
+					'ZRTCwquyCHc',
+					'Tt7bzxurJ1I',
+					'gSsJBO2JUO4',
+					'3SCBYUE_X1U',
+					'SyimUCBIo6c',
+					'RRNanbmD1xk',
+					'qMQ-y9dHE2k',
+					'hgwpZvTWLmE'
+				]
+	
+				const ChanceOfRare = 1/8;
+				var CommonOrRare = Math.round(Math.random()) > ChanceOfRare ? false : true;
+				var ChosenVideoId;			
+				
+				if(CommonOrRare)
+				{
+					ChosenVideoId = CommonVideoLinks[Math.floor(Math.random() * (CommonVideoLinks.length))];
+				}
+				else
+				{
+					ChosenVideoId = RareVideoLinks[Math.floor(Math.random() * (RareVideoLinks.length))];
+				}
+	
+				var ChosenVideoUrl = 'https://youtu.be/' + ChosenVideoId;
+	
+				var JsonUrl = 'https://noembed.com/embed?url=https://www.youtube.com/watch?v=' + ChosenVideoId; 
+				var ChosenVideoTitle = await GetJsonTitle(JsonUrl);
+				
+				var baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSf_Z3nol0PQztbRLilbfIA4XSbIXMroVQyyDc-SIpTzkSK5Eg/formResponse?&entry.1267494256=';
+				var endUrl = hash + '&submit=SUBMIT';
+	
+				let iframe = document.getElementById("form");
+				iframe.src = baseUrl + endUrl;
+	
+				LoadVideo(ChosenVideoUrl);
+
+				console.log('Did not Find Ip');
 			}
 			else
 			{
-				ChosenVideoId = RareVideoLinks[Math.floor(Math.random() * (RareVideoLinks.length))];
+				document.getElementById('scantext').innerHTML = "Hey! No Double Scannsies!";
+				console.log('Found Ip');
+
+				setTimeout(function(){
+					window.close();
+				}, 3000);
 			}
+		}
 
-			var ChosenVideoUrl = 'https://youtu.be/' + ChosenVideoId;
+		async function GetSpreadSheetData()
+		{
+			var GetSheetHashedIps = await fetch("https://script.google.com/macros/s/AKfycbyqRbuQoWI7AFltKG2DfU7RvEqWvemJiI9T1z7bkrJnv8CWXQ3vDkDKrcNzxJWcUQK5jA/exec",
+				{
+					// mode: 'no-cors'
+				}).then(response => response.text());
 
-			var JsonUrl = 'https://noembed.com/embed?url=https://www.youtube.com/watch?v=' + ChosenVideoId; 
-			var ChosenVideoTitle = await GetJsonTitle(JsonUrl);
-			
-			var baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSf_Z3nol0PQztbRLilbfIA4XSbIXMroVQyyDc-SIpTzkSK5Eg/formResponse?&entry.1267494256=';
-			var endUrl = hash + '&submit=SUBMIT';
-
-			let iframe = document.getElementById("form");
-			iframe.src = baseUrl + endUrl;
-
-			LoadVideo(ChosenVideoUrl);
+			return await GetSheetHashedIps;
 		}
 
 		async function GetJsonTitle(JsonUrl)

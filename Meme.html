@@ -89,39 +89,26 @@
 			var ip = document.getElementById('doc').innerHTML;
 			var hash = CryptoJS.SHA256(ip).toString();
 
-			var SheetData = await GetSpreadSheetData(GoogleAppScriptURL);
-			var Rowdata;
-
-			SheetData.forEach(element => {
-				if (element.Ip == hash)
-				{
-					Rowdata = element;
-					return;
-				}
-			});
-
-
-			fetch(GoogleAppScriptURL, {
+			var User = fetch(GoogleAppScriptURL, {
 				method: 'POST',
 				body: JSON.stringify({
 					'Ip': hash,
 					'Time': formatAMPM(new Date())
 				})
-				
-			});
+			}).then(response => response.json());
 
 
-			if (Rowdata.Count == 1)			RickRoll();
-			else if(Rowdata.Count == 2)		document.getElementById('scantext').innerHTML = "Hey! No Double Scansies!";
-			else if (Rowdata.Count == 3)	document.getElementById('scantext').innerHTML = "Hey! No Triple Scansies!";
-			else if (Rowdata.Count == 4) 	document.getElementById('scantext').innerHTML = "Hey! No Quadruple Scansies!";
-			else if (Rowdata.Count == 5) 	document.getElementById('scantext').innerHTML = "Hey! No Quintuple Scansies!";
-			else if (Rowdata.Count == 6) 	document.getElementById('scantext').innerHTML = "Hey! No Hextuple Scansies!";
-			else if (Rowdata.Count == 7) 	document.getElementById('scantext').innerHTML = "Hey! No Septuple Scansies!";
-			else if (Rowdata.Count == 8) 	document.getElementById('scantext').innerHTML = "Hey! No Octuple Scansies!";
-			else if (Rowdata.Count == 9) 	document.getElementById('scantext').innerHTML = "Hey! No Nonuple Scansies!";
-			else if (Rowdata.Count == 10)	document.getElementById('scantext').innerHTML = "Hey! No Decuple Scansies!";
-			else if (Rowdata.Count > 10)	document.getElementById('scantext').innerHTML = 'Please Stop Scanning it, you have scanned it ' + Rowdata.Count + ' times aleady';
+			if (User[0] == 1)			RickRoll();
+			else if(User[0] == 2)		document.getElementById('scantext').innerHTML = "Hey! No Double Scansies!";
+			else if (User[0] == 3)	document.getElementById('scantext').innerHTML = "Hey! No Triple Scansies!";
+			else if (User[0] == 4) 	document.getElementById('scantext').innerHTML = "Hey! No Quadruple Scansies!";
+			else if (User[0] == 5) 	document.getElementById('scantext').innerHTML = "Hey! No Quintuple Scansies!";
+			else if (User[0] == 6) 	document.getElementById('scantext').innerHTML = "Hey! No Hextuple Scansies!";
+			else if (User[0] == 7) 	document.getElementById('scantext').innerHTML = "Hey! No Septuple Scansies!";
+			else if (User[0] == 8) 	document.getElementById('scantext').innerHTML = "Hey! No Octuple Scansies!";
+			else if (User[0] == 9) 	document.getElementById('scantext').innerHTML = "Hey! No Nonuple Scansies!";
+			else if (User[0] == 10)	document.getElementById('scantext').innerHTML = "Hey! No Decuple Scansies!";
+			else if (User[0] > 10)	document.getElementById('scantext').innerHTML = 'Please Stop Scanning it, you have scanned it ' + Rowdata.Count + ' times aleady';
 		}
 
 		async function RickRoll()
@@ -169,13 +156,6 @@
 			{
 				// mode: 'no-cors',
 			}).then(Response => Response.json());
-
-			// var GetSheetHashedIps = await $.ajax({
-			// 	url: url,
-			// 	type: "GET",
-			// 	dataType: "text",
-			// 	async: false
-			// }).responseText;
 
 			return await GetSheetHashedIps;
 		}

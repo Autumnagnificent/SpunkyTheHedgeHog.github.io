@@ -82,69 +82,85 @@
 		
 		async function main() 
 		{
-			var GoogleAppScriptURL = 'https://script.google.com/macros/s/AKfycbzos5hV6HnSrZn3lVcJaAOHNmrzaH1tB-Awp2CWNdf3GJqNC9kJnf0CVSHsRU9sB_tdJA/exec';
+			var GoogleAppScriptURL = 'https://script.google.com/macros/s/AKfycbxRlI0BzFFOIjzqYKr-Jcsaj_zGsJlcKtYkv-v0Qda5kgs0f3dQtHT_bacRX8hocu7xzw/exec';
 
 
 			await getIP();
 			var ip = document.getElementById('doc').innerHTML;
 			var hash = CryptoJS.SHA256(ip).toString();
 
-			var ipsfromspreadsheet = await GetSpreadSheetData(GoogleAppScriptURL);
-			var FoundIp = ipsfromspreadsheet.search(hash) > -1;
-			
-			if(!FoundIp)
-			{
-				// Posts Ip and Time to Spreadsheet
-				fetch(GoogleAppScriptURL, {
-					method: 'POST',
-					body: JSON.stringify({
-						'ip': hash,
-						'time': formatAMPM(new Date())
-					})
-					
-				});
+			var SheetData = await GetSpreadSheetData(GoogleAppScriptURL);
+			var Rowdata;
 
-				// Memery
-				var CommonVideoLinks = [
-					'dQw4w9WgXcQ'
-				]
-				var RareVideoLinks = [
-					'Gs069dndIYk',
-					'L_jWHffIx5E',
-					'v1K4EAXe2oo',
-					'vOGhAV-84iI',
-					'ZRTCwquyCHc',
-					'Tt7bzxurJ1I',
-					'gSsJBO2JUO4',
-					'3SCBYUE_X1U',
-					'SyimUCBIo6c',
-					'RRNanbmD1xk',
-					'qMQ-y9dHE2k',
-					'hgwpZvTWLmE'
-				]
-
-				const ChanceOfRare = 1 / 8;
-				var CommonOrRare = Math.round(Math.random()) > ChanceOfRare ? false : true;
-				var ChosenVideoId;
-
-				if (CommonOrRare) {
-					ChosenVideoId = CommonVideoLinks[Math.floor(Math.random() * (CommonVideoLinks.length))];
+			SheetData.forEach(element => {
+				if (element.Ip == hash)
+				{
+					Rowdata = element;
+					return;
 				}
-				else {
-					ChosenVideoId = RareVideoLinks[Math.floor(Math.random() * (RareVideoLinks.length))];
-				}
+			});
 
-				var ChosenVideoUrl = 'https://youtu.be/' + ChosenVideoId;
 
-				var JsonUrl = 'https://noembed.com/embed?url=https://www.youtube.com/watch?v=' + ChosenVideoId;
-				var ChosenVideoTitle = await GetJsonTitle(JsonUrl);
+			fetch(GoogleAppScriptURL, {
+				method: 'POST',
+				body: JSON.stringify({
+					'Ip': hash,
+					'Time': formatAMPM(new Date())
+				})
+				
+			});
 
-				LoadVideo(ChosenVideoUrl);
+
+			if (Rowdata.Count == 1)			RickRoll();
+			else if(Rowdata.Count == 2)		document.getElementById('scantext').innerHTML = "Hey! No Double Scansies!";
+			else if (Rowdata.Count == 3)	document.getElementById('scantext').innerHTML = "Hey! No Triple Scansies!";
+			else if (Rowdata.Count == 4) 	document.getElementById('scantext').innerHTML = "Hey! No Quadruple Scansies!";
+			else if (Rowdata.Count == 5) 	document.getElementById('scantext').innerHTML = "Hey! No Quintuple Scansies!";
+			else if (Rowdata.Count == 6) 	document.getElementById('scantext').innerHTML = "Hey! No Hextuple Scansies!";
+			else if (Rowdata.Count == 7) 	document.getElementById('scantext').innerHTML = "Hey! No Septuple Scansies!";
+			else if (Rowdata.Count == 8) 	document.getElementById('scantext').innerHTML = "Hey! No Octuple Scansies!";
+			else if (Rowdata.Count == 9) 	document.getElementById('scantext').innerHTML = "Hey! No Nonuple Scansies!";
+			else if (Rowdata.Count == 10)	document.getElementById('scantext').innerHTML = "Hey! No Decuple Scansies!";
+			else if (Rowdata.Count > 10)	document.getElementById('scantext').innerHTML = 'Please Stop Scanning it, you have scanned it ' + Rowdata.Count + ' times aleady';
+		}
+
+		async function RickRoll()
+		{
+			var CommonVideoLinks = [
+				'dQw4w9WgXcQ'
+			]
+			var RareVideoLinks = [
+				'Gs069dndIYk',
+				'L_jWHffIx5E',
+				'v1K4EAXe2oo',
+				'vOGhAV-84iI',
+				'ZRTCwquyCHc',
+				'Tt7bzxurJ1I',
+				'gSsJBO2JUO4',
+				'3SCBYUE_X1U',
+				'SyimUCBIo6c',
+				'RRNanbmD1xk',
+				'qMQ-y9dHE2k',
+				'hgwpZvTWLmE'
+			]
+
+			const ChanceOfRare = 1 / 8;
+			var CommonOrRare = Math.round(Math.random()) > ChanceOfRare ? false : true;
+			var ChosenVideoId;
+
+			if (CommonOrRare) {
+				ChosenVideoId = CommonVideoLinks[Math.floor(Math.random() * (CommonVideoLinks.length))];
 			}
-			else
-			{
-				document.getElementById('scantext').innerHTML = "Hey! No Double Scansies!";
+			else {
+				ChosenVideoId = RareVideoLinks[Math.floor(Math.random() * (RareVideoLinks.length))];
 			}
+
+			var ChosenVideoUrl = 'https://youtu.be/' + ChosenVideoId;
+
+			var JsonUrl = 'https://noembed.com/embed?url=https://www.youtube.com/watch?v=' + ChosenVideoId;
+			var ChosenVideoTitle = await GetJsonTitle(JsonUrl);
+
+			LoadVideo(ChosenVideoUrl);
 		}
 
 		async function GetSpreadSheetData(url)
@@ -152,7 +168,7 @@
 			var GetSheetHashedIps = await fetch(url,
 			{
 				// mode: 'no-cors',
-			}).then(response => response.text());
+			}).then(Response => Response.json());
 
 			// var GetSheetHashedIps = await $.ajax({
 			// 	url: url,

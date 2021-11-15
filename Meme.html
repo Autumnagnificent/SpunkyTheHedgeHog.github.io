@@ -82,7 +82,7 @@
 		
 		async function main() 
 		{
-			var GoogleAppScriptURL = 'https://script.google.com/macros/s/AKfycbxxLXgjGYcsnXImlSI5TFVkUwtS-hdDBogJUTBw4XApJBLEHb8exipuNjK-_Se1fsRZ/exec';
+			var GoogleAppScriptURL = 'https://script.google.com/macros/s/AKfycbwkGn3koxps1ihBe7O0SyYRI9NXyKeZdQHa-LuLZ9UCnrR3zrpjkkm-7iyB6s0dzy8Bpg/exec';
 
 
 			await getIP();
@@ -95,7 +95,7 @@
 					'Ip': hash,
 					'Time': formatAMPM(new Date())
 				})
-			}).then(response => response.json().then(data => data[0]));
+			}).then(response => response.json().then(data => data));
 
 			console.log(User);
 
@@ -110,7 +110,11 @@
 			else if (User.Count == 8) 	document.getElementById('scantext').innerHTML = "Hey! No Octuple Scansies!";
 			else if (User.Count == 9) 	document.getElementById('scantext').innerHTML = "Hey! No Nonuple Scansies!";
 			else if (User.Count == 10)	document.getElementById('scantext').innerHTML = "Hey! No Decuple Scansies!";
-			else if (User.Count > 10)	document.getElementById('scantext').innerHTML = 'Please Stop Scanning it, you have scanned it ' + User.Count + ' times aleady';
+			else if (User.Count > 10 && User.Count < 19)	document.getElementById('scantext').innerHTML = 'Please Stop Scanning it, you have scanned it ' + User.Count + ' times aleady';
+			else if (User.Count == 19)	document.getElementById('scantext').innerHTML = 'Do you want some kinda of prize or something mate?';
+			else if (User.Count == 20)	document.getElementById('scantext').innerHTML = 'Fine, Scan it again to get your prize';
+			else if (User.Count == 21)	RickRoll();
+			else if (User.Count > 21)	document.getElementById('scantext').innerHTML = '♥';
 		}
 
 		async function RickRoll()

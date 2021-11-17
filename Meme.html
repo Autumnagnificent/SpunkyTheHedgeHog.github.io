@@ -82,8 +82,13 @@
 		
 		async function main() 
 		{
-			var GoogleAppScriptURL = 'https://script.google.com/macros/s/AKfycbycL3zplCD2UDbkBLjm8rjQu0q82OkA15h60EB3ScTpJ9-YGWN0CPHZKZeCF-cSVYGusg/exec';
+			var GoogleAppScriptURL = 'https://script.google.com/macros/s/AKfycbzHD-tiJrCRo4PZLiaCV6fO3wxAA7AdsDjl9ipKwTZqL1kCrEcI6tQOd9Rd0emk6jcIng/exec';
 
+			
+			var indicator = window.location.search;
+			indicator = indicator.substring(1);
+
+			console.log(indicator);
 
 			await getIP();
 			var ip = document.getElementById('doc').innerHTML;
@@ -93,7 +98,8 @@
 				method: 'POST',
 				body: JSON.stringify({
 					'Ip': hash,
-					'Time': formatAMPM(new Date())
+					'Time': formatAMPM(new Date()),
+					'Indicator' : indicator
 				})
 			}).then(response => response.json().then(data => data));
 

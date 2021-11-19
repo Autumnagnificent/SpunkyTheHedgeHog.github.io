@@ -109,7 +109,7 @@
 
 			console.log(User);
 
-			if(AlertMode && User.Indicator.IndexOfAny(AlertFor) != -1)
+			if(AlertMode && (User.Indicator.IndexOfAny(AlertFor) != -1))
 			{
 				document.getElementById('scantext').innerHTML = Alert;
 			}

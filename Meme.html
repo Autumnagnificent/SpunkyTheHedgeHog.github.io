@@ -82,7 +82,8 @@
 		
 		async function main() 
 		{
-			var AlertMode = false;
+			var AlertMode = true;
+			var AlertFor = {'A','B'};
 			var Alert = "Hi";
 			
 			var GoogleAppScriptURL = 'https://script.google.com/macros/s/AKfycbw8waD2-Pft8NsNB55HZVrCuyWdXlOBg0y9hrYyU90bZOvvdxf_gM1sKLGOouZuESLC/exec';
@@ -108,7 +109,7 @@
 
 			console.log(User);
 
-			if(AlertMode)
+			if(AlertMode && User.Indicator.IndexOfAny(AlertFor) != -1)
 			{
 				document.getElementById('scantext').innerHTML = Alert;
 			}

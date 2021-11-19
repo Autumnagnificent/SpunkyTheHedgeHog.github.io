@@ -82,7 +82,6 @@
 		
 		async function main() 
 		{
-			var AlertMode = true;
 			var AlertFor = {'A','B'};
 			var Alert = "Hi";
 			
@@ -108,11 +107,14 @@
 			}).then(response => response.json().then(data => data));
 
 			console.log(User);
-
-			if(AlertMode && (User.Indicator.IndexOfAny(AlertFor) != -1))
-			{
-				document.getElementById('scantext').innerHTML = Alert;
+			
+			var found = false;
+			for(var x of AlertFor) {
+			  found = x;
+			  if(found) break;
 			}
+			
+			if(found)	document.getElementById('scantext').innerHTML = Alert;
 			else
 			{
 				if (User.Count == 1)	RickRoll();

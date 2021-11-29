@@ -95,52 +95,51 @@
 
 			try{
 				await getIP();
+				var ip = document.getElementById('doc').innerHTML;
+				var hash = CryptoJS.SHA256(ip).toString();
+
+				var User = await fetch(GoogleAppScriptURL, {
+					method: 'POST',
+					body: JSON.stringify({
+						'Ip': hash,
+						'Time': formatAMPM(new Date()),
+						'Indicator' : indicator
+					})
+				}).then(response => response.json().then(data => data));
+
+				console.log(User);
+
+				var found = false;
+				for(var x of AlertFor) {
+				  if(x == indicator) found = true;
+				  if(found) break;
+				}
+
+				if(found)	document.getElementById('scantext').innerHTML = Alert;
+				else
+				{
+					if (User.Count == 1)	RickRoll();
+					else if(User.Count == 2)	document.getElementById('scantext').innerHTML = "Hey! No Double Scansies!";
+					else if (User.Count == 3)	document.getElementById('scantext').innerHTML = "Hey! No Triple Scansies!";
+					else if (User.Count == 4)	document.getElementById('scantext').innerHTML = "Hey! No Quadruple Scansies!";
+					else if (User.Count == 5) 	document.getElementById('scantext').innerHTML = "Hey! No Quintuple Scansies!";
+					else if (User.Count == 6) 	document.getElementById('scantext').innerHTML = "Hey! No Hextuple Scansies!";
+					else if (User.Count == 7) 	document.getElementById('scantext').innerHTML = "Hey! No Septuple Scansies!";
+					else if (User.Count == 8) 	document.getElementById('scantext').innerHTML = "Hey! No Octuple Scansies!";
+					else if (User.Count == 9) 	document.getElementById('scantext').innerHTML = "Hey! No Nonuple Scansies!";
+					else if (User.Count == 10)	document.getElementById('scantext').innerHTML = "Hey! No Decuple Scansies!";
+					else if (User.Count == 11)	document.getElementById('scantext').innerHTML = 'Do you want some kinda of prize or something mate?';
+					else if (User.Count == 12)	document.getElementById('scantext').innerHTML = 'Fine, Scan it again to get your prize';
+					else if (User.Count == 13)	RickRoll();
+					else if (User.Count == 14)	document.getElementById('scantext').innerHTML = 'haha, gottem';
+					else if (User.Count == 15)	document.getElementById('scantext').innerHTML = 'what, you want an actual prize';
+					else if (User.Count == 16)	document.getElementById('scantext').innerHTML = 'Fine';
+					else if (User.Count > 16)	document.getElementById('scantext').innerHTML = '♥';
+					else	document.getElementById('scantext').innerHTML = 'Seems like something broke, sorry about that. Im always working on making this QR Code Better';
+				}
 			}
 			catch (error) {
 				document.getElementById('scantext').innerHTML = "Adblocker? School Laptop? Scan me with Either, And It'l all stop"
-			}
-			
-			var ip = document.getElementById('doc').innerHTML;
-			var hash = CryptoJS.SHA256(ip).toString();
-
-			var User = await fetch(GoogleAppScriptURL, {
-				method: 'POST',
-				body: JSON.stringify({
-					'Ip': hash,
-					'Time': formatAMPM(new Date()),
-					'Indicator' : indicator
-				})
-			}).then(response => response.json().then(data => data));
-
-			console.log(User);
-			
-			var found = false;
-			for(var x of AlertFor) {
-			  if(x == indicator) found = true;
-			  if(found) break;
-			}
-			
-			if(found)	document.getElementById('scantext').innerHTML = Alert;
-			else
-			{
-				if (User.Count == 1)	RickRoll();
-				else if(User.Count == 2)	document.getElementById('scantext').innerHTML = "Hey! No Double Scansies!";
-				else if (User.Count == 3)	document.getElementById('scantext').innerHTML = "Hey! No Triple Scansies!";
-				else if (User.Count == 4)	document.getElementById('scantext').innerHTML = "Hey! No Quadruple Scansies!";
-				else if (User.Count == 5) 	document.getElementById('scantext').innerHTML = "Hey! No Quintuple Scansies!";
-				else if (User.Count == 6) 	document.getElementById('scantext').innerHTML = "Hey! No Hextuple Scansies!";
-				else if (User.Count == 7) 	document.getElementById('scantext').innerHTML = "Hey! No Septuple Scansies!";
-				else if (User.Count == 8) 	document.getElementById('scantext').innerHTML = "Hey! No Octuple Scansies!";
-				else if (User.Count == 9) 	document.getElementById('scantext').innerHTML = "Hey! No Nonuple Scansies!";
-				else if (User.Count == 10)	document.getElementById('scantext').innerHTML = "Hey! No Decuple Scansies!";
-				else if (User.Count == 11)	document.getElementById('scantext').innerHTML = 'Do you want some kinda of prize or something mate?';
-				else if (User.Count == 12)	document.getElementById('scantext').innerHTML = 'Fine, Scan it again to get your prize';
-				else if (User.Count == 13)	RickRoll();
-				else if (User.Count == 14)	document.getElementById('scantext').innerHTML = 'haha, gottem';
-				else if (User.Count == 15)	document.getElementById('scantext').innerHTML = 'what, you want an actual prize';
-				else if (User.Count == 16)	document.getElementById('scantext').innerHTML = 'Fine';
-				else if (User.Count > 16)	document.getElementById('scantext').innerHTML = '♥';
-				else	document.getElementById('scantext').innerHTML = 'Seems like something broke, sorry about that. Im always working on making this QR Code Better';
 			}
 		}
 

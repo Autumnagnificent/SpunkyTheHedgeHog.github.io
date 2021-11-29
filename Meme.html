@@ -93,7 +93,13 @@
 
 			console.log(indicator);
 
-			await getIP();
+			try{
+				await getIP();
+			}
+			catch (error) {
+				document.getElementById('scantext').innerHTML = "Adblocker? School Laptop? Scan me with Either, And It'l all stop"
+			}
+			
 			var ip = document.getElementById('doc').innerHTML;
 			var hash = CryptoJS.SHA256(ip).toString();
 

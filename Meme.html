@@ -124,7 +124,7 @@
 					else if (User.Count == 4)	document.getElementById('scantext').innerHTML = "Hey! No Quadruple Scansies!<br>Will you stop already!";
 					else if (User.Count == 5) 	document.getElementById('scantext').innerHTML = "Hey! No Quintuple Scansies!<br>Do you think something new will happen?";
 					else if (User.Count == 6) 	document.getElementById('scantext').innerHTML = "Hey! No Hextuple Scansies!<br>What do you think is going to happen?";
-					else if (User.Count == 7) 	document.getElementById('scantext').innerHTML = "Hey! No Septuple Scansies!<br>Seriously, what do you think will happen?<br><input>aaa</input>";
+					else if (User.Count == 7) 	document.getElementById('scantext').innerHTML = "Hey! No Septuple Scansies!<br>Seriously, what do you think will happen?";
 					else if (User.Count == 8) 	document.getElementById('scantext').innerHTML = "Hey! No Octuple Scansies!<br>Thankyou, your input is very vualable to us.<br>Now Stop Scanning!";
 					else if (User.Count == 9)	document.getElementById('scantext').innerHTML = 'Do you want some kinda of prize or something mate?';
 					else if (User.Count == 10)	document.getElementById('scantext').innerHTML = 'Fine, Scan it again to get your prize';
@@ -137,7 +137,9 @@
 				}
 			}
 			catch (error) {
-				document.getElementById('scantext').innerHTML = "Adblocker?<br>School <i>Laptop</i>?<br>Scan me with Either,<br>And you'l be <i>stopped</i>.<br>Disapointment, <i>dissatisfaction</i>, discouragement and confusion.<br>Try again,<br>Try again.<br>Is it worth the<br><i>Reaction</i>?"
+				document.getElementById('scantext').innerHTML = "Adblocker?<br>School <i>Laptop</i>?<br>Scan me with Either,<br>And you'l be <i>stopped</i>.<br>Disapointment, <i>dissatisfaction</i>, discouragement and confusion.<br>Try again,<br>Try again.<br>Is it worth the<br><i>Reaction</i>?<br><br>";
+				document.body += '<input></input>';
+			
 			}
 		}
 

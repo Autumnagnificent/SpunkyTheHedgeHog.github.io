@@ -122,7 +122,7 @@
 				if(found)	document.getElementById('scantext').innerHTML = Alert;
 				else
 				{
-					if (User.Count == 1)	RickRoll();
+					if (User.Count == 1)	RickRoll(false);
 					else if(User.Count == 2)	document.getElementById('scantext').innerHTML = "Hey! No Double Scansies!";
 					else if (User.Count == 3)	document.getElementById('scantext').innerHTML = "Hey! No Triple Scansies!<br>No more Scanning!";
 					else if (User.Count == 4)	document.getElementById('scantext').innerHTML = "Hey! No Quadruple Scansies!<br>Will you stop already!";
@@ -132,7 +132,7 @@
 					else if (User.Count == 8) 	document.getElementById('scantext').innerHTML = "...";
 					else if (User.Count == 9)	document.getElementById('scantext').innerHTML = 'Do you want some kinda of prize or something mate?';
 					else if (User.Count == 10)	document.getElementById('scantext').innerHTML = 'Fine, Scan it again to get your prize';
-					else if (User.Count == 11)	RickRoll();
+					else if (User.Count == 11)	RickRoll(true);
 					else if (User.Count == 12)	document.getElementById('scantext').innerHTML = 'haha, gottem';
 					else if (User.Count == 13)	document.getElementById('scantext').innerHTML = 'what, you want an actual prize';
 					else if (User.Count == 14)	document.getElementById('scantext').innerHTML = 'Fine';
@@ -145,7 +145,7 @@
 			}
 		}
 
-		async function RickRoll()
+		async function RickRoll(ForceRickRoll)
 		{
 			var CommonVideoLinks = [
 				'dQw4w9WgXcQ'
@@ -169,7 +169,7 @@
 			var CommonOrRare = Math.round(Math.random()) > ChanceOfRare ? false : true;
 			var ChosenVideoId;
 
-			if (CommonOrRare) {
+			if (CommonOrRare || ForceRickRoll) {
 				ChosenVideoId = CommonVideoLinks[Math.floor(Math.random() * (CommonVideoLinks.length))];
 			}
 			else {

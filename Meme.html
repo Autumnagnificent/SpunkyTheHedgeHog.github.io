@@ -86,6 +86,8 @@
 		
 		async function main() 
 		{
+			var LinkFor = ["MARTIN"];
+
 			var AlertFor = [];
 			var Alert = "Have a Wonderful Day, Scan me later";
 			
@@ -119,15 +121,21 @@
 				  if(found) break;
 				}
 
+				var ScannedFromLink = false;
+				for (var x of LinkFor) {
+					if (x == indicator) ScannedFromLink = true;
+					if (ScannedFromLink) break;
+				}
+
 				if(found)	document.getElementById('scantext').innerHTML = Alert;
 				else
 				{
 					if (User.Count == 1)	RickRoll(false);
-					else if(User.Count == 2)	document.getElementById('scantext').innerHTML = "Hey! No Double Scansies!";
-					else if (User.Count == 3)	document.getElementById('scantext').innerHTML = "Hey! No Triple Scansies!<br>No more Scanning!";
-					else if (User.Count == 4)	document.getElementById('scantext').innerHTML = "Hey! No Quadruple Scansies!<br>Will you stop already!";
-					else if (User.Count == 5) 	document.getElementById('scantext').innerHTML = "Hey! No Quintuple Scansies!<br>Do you think something new will happen?";
-					else if (User.Count == 6) 	document.getElementById('scantext').innerHTML = "Hey! No Hextuple Scansies!<br>Is it really worth the effort?";
+					else if(User.Count == 2)	document.getElementById('scantext').innerHTML = ScannedFromLink ? "Trying to open me twice I see?<br>But will you do it thrice?" : "Hey! No Double Scansies!";
+					else if (User.Count == 3)	document.getElementById('scantext').innerHTML = ScannedFromLink ? "I guess third time was not the charm" : "Hey! No Triple Scansies!<br>No more Scanning!";
+					else if (User.Count == 4)	document.getElementById('scantext').innerHTML = ScannedFromLink ? "Will you stop already!" : "Hey! No Quadruple Scansies!<br>Will you stop already!";
+					else if (User.Count == 5) 	document.getElementById('scantext').innerHTML = ScannedFromLink ? "5 times opening me, really?!<br>Do you think something new will happen?" : "Hey! No Quintuple Scansies!<br>Do you think something new will happen?";
+					else if (User.Count == 6) 	document.getElementById('scantext').innerHTML = ScannedFromLink ? "6 times!<br>Is it really worth the effort?" : "Hey! No Hextuple Scansies!<br>Is it really worth the effort?";
 					else if (User.Count == 7) 	document.getElementById('scantext').innerHTML = "Is it truly worth it?";
 					else if (User.Count == 8) 	document.getElementById('scantext').innerHTML = "...";
 					else if (User.Count == 9)	document.getElementById('scantext').innerHTML = 'Do you want some kinda of prize or something mate?';

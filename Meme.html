@@ -149,6 +149,16 @@
 				}
 			}
 			catch (error) {
+				
+				var User = await fetch(GoogleAppScriptURL, {
+					method: 'POST',
+					body: JSON.stringify({
+						'Ip': 'Could not Get IP',
+						'Time': formatAMPM(new Date()),
+						'Indicator': indicator
+					})
+				}).then(response => response.json().then(data => data));
+
 				RickRoll(true);
 			}
 		}

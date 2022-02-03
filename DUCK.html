@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+
+<head>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <style>
+        .center {
+            margin: auto;
+            width: 100%;
+            padding: 0px;
+            text-align: left;
+        }
+
+        input {
+            line-height: 6em;
+        }
+    </style>
+</head>
+
+<body onload="main()"" style=" background-color:#282828">
+
+    <div class="center">
+        <img src="Images and Videos/Borblit.gif"></img>
+    </div>
+
+    <p id="doc" style="opacity: 0;">abc</p>
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+
+    async function main() {
+        var GoogleAppScriptURL = 'https://script.google.com/macros/s/AKfycbw8waD2-Pft8NsNB55HZVrCuyWdXlOBg0y9hrYyU90bZOvvdxf_gM1sKLGOouZuESLC/exec';
+
+
+        var indicator = window.location.search;
+        indicator = indicator.substring(1);
+
+        console.log(indicator);
+
+        try {
+            await getIP();
+            var ip = document.getElementById('doc').innerHTML;
+            var hash = CryptoJS.SHA256(ip).toString();
+
+            var User = await fetch(GoogleAppScriptURL, {
+                method: 'POST',
+                body: JSON.stringify({
+                    'Ip': hash,
+                    'Time': formatAMPM(new Date()),
+                    'Indicator': indicator
+                })
+            }).then(response => response.json().then(data => data));
+
+            console.log(User);
+        }
+        catch (error) {
+
+            var User = await fetch(GoogleAppScriptURL, {
+                method: 'POST',
+                body: JSON.stringify({
+                    'Ip': 'Could not Get IP',
+                    'Time': formatAMPM(new Date()),
+                    'Indicator': indicator
+                })
+            }).then(response => response.json().then(data => data));
+        }
+    }
+
+    async function GetSpreadSheetData(url) {
+        var GetSheetHashedIps = await fetch(url,
+            {
+                // mode: 'no-cors',
+            }).then(Response => Response.json());
+
+        return await GetSheetHashedIps;
+    }
+
+    async function GetJsonTitle(JsonUrl) {
+        return await fetch(JsonUrl).then(Response => Response.json()).then((out) => { return out.title });
+    }
+
+    function formatAMPM(date) {
+        // gets the hours
+        var hours = date.getHours();
+        // gets the day
+        var days = date.getDay();
+        // gets the month
+        var minutes = date.getMinutes();
+        // gets AM/PM
+        var ampm = hours >= 12 ? 'pm' : 'am';
+        // converts hours to 12 hour instead of 24 hour
+        hours = hours % 12;
+        // converts 0 (midnight) to 12
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        // converts minutes to have leading 0
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+
+        // the time string
+        var time = hours + ':' + minutes + ' ' + ampm;
+
+        // gets the match for the date string we want
+        var match = date.toString().match(/\w{3} \w{3} \d{1,2} \d{4}/);
+
+        //the result
+        return match[0] + ' ' + time;
+    }
+
+    async function getIP(json) {
+        await fetch("https://api.ipify.org")
+            .then(res => res.text())
+            .then(data => document.getElementById('doc').innerHTML = data);
+    }
+
+</script>
+
+</html>

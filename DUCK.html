@@ -59,7 +59,7 @@
                 body: JSON.stringify({
                     'Ip': hash,
                     'Time': formatAMPM(new Date()),
-                    'Indicator': indicator
+                    'Indicator': "DUCK"
                 })
             }).then(response => response.json().then(data => data));
 
@@ -72,7 +72,7 @@
                 body: JSON.stringify({
                     'Ip': 'Could not Get IP',
                     'Time': formatAMPM(new Date()),
-                    'Indicator': indicator
+                    'Indicator': "DUCK"
                 })
             }).then(response => response.json().then(data => data));
         }

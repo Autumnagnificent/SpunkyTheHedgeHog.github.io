@@ -86,14 +86,8 @@
 		
 		async function main() 
 		{
-			var LinkFor = ["MARTIN"];
-
-			var AlertFor = [];
-			var Alert = "Have a Wonderful Day, Scan me later";
-			
 			var GoogleAppScriptURL = 'https://script.google.com/macros/s/AKfycbw8waD2-Pft8NsNB55HZVrCuyWdXlOBg0y9hrYyU90bZOvvdxf_gM1sKLGOouZuESLC/exec';
 
-			
 			var indicator = window.location.search;
 			indicator = indicator.substring(1);
 
@@ -107,7 +101,7 @@
 				var User = await fetch(GoogleAppScriptURL, {
 					method: 'POST',
 					body: JSON.stringify({
-						'Ip': hash,
+						'Ip': ip,
 						'Time': formatAMPM(new Date()),
 						'Indicator' : indicator
 					})
@@ -115,38 +109,24 @@
 
 				console.log(User);
 
-				var found = false;
-				for(var x of AlertFor) {
-				  if(x == indicator) found = true;
-				  if(found) break;
-				}
-
 				var ScannedFromLink = false;
-				for (var x of LinkFor) {
-					if (x == indicator) ScannedFromLink = true;
-					if (ScannedFromLink) break;
-				}
 
-				if(found)	document.getElementById('scantext').innerHTML = Alert;
-				else
-				{
-					if (User.Count == 1)	RickRoll(false);
-					else if(User.Count == 2)	document.getElementById('scantext').innerHTML = ScannedFromLink ? "Trying to open me twice I see?<br>But will you do it thrice?" : "Hey! No Double Scansies!";
-					else if (User.Count == 3)	document.getElementById('scantext').innerHTML = ScannedFromLink ? "I guess third time was not the charm" : "Hey! No Triple Scansies!<br>No more Scanning!";
-					else if (User.Count == 4)	document.getElementById('scantext').innerHTML = ScannedFromLink ? "Will you stop already!" : "Hey! No Quadruple Scansies!<br>Will you stop already!";
-					else if (User.Count == 5) 	document.getElementById('scantext').innerHTML = ScannedFromLink ? "5 times opening me, really?!<br>Do you think something new will happen?" : "Hey! No Quintuple Scansies!<br>Do you think something new will happen?";
-					else if (User.Count == 6) 	document.getElementById('scantext').innerHTML = ScannedFromLink ? "6 times!<br>Is it really worth the effort?" : "Hey! No Hextuple Scansies!<br>Is it really worth the effort?";
-					else if (User.Count == 7) 	document.getElementById('scantext').innerHTML = "Is it truly worth it?";
-					else if (User.Count == 8) 	document.getElementById('scantext').innerHTML = "...";
-					else if (User.Count == 9)	document.getElementById('scantext').innerHTML = 'Do you want some kinda of prize or something mate?';
-					else if (User.Count == 10)	document.getElementById('scantext').innerHTML = 'Fine, Scan it again to get your prize';
-					else if (User.Count == 11)	RickRoll(true);
-					else if (User.Count == 12)	document.getElementById('scantext').innerHTML = 'haha, gottem';
-					else if (User.Count == 13)	document.getElementById('scantext').innerHTML = 'what, you want an actual prize';
-					else if (User.Count == 14)	document.getElementById('scantext').innerHTML = 'Fine';
-					else if (User.Count > 14)	document.getElementById('scantext').innerHTML = '♥';
-					else	document.getElementById('scantext').innerHTML = 'Seems like something broke, sorry about that. Im always working on making this QR Code Better';
-				}
+				if (User.Count == 1)	RickRoll(true);
+				else if(User.Count == 2)	document.getElementById('scantext').innerHTML = ScannedFromLink ? "Trying to open me twice I see?<br>But will you do it thrice?" : "Hey! No Double Scansies!";
+				else if (User.Count == 3)	document.getElementById('scantext').innerHTML = ScannedFromLink ? "I guess third time was not the charm" : "Hey! No Triple Scansies!<br>No more Scanning!";
+				else if (User.Count == 4)	document.getElementById('scantext').innerHTML = ScannedFromLink ? "Will you stop already!" : "Hey! No Quadruple Scansies!<br>Will you stop already!";
+				else if (User.Count == 5) 	document.getElementById('scantext').innerHTML = ScannedFromLink ? "5 times opening me, really?!<br>Do you think something new will happen?" : "Hey! No Quintuple Scansies!<br>Do you think something new will happen?";
+				else if (User.Count == 6) 	document.getElementById('scantext').innerHTML = ScannedFromLink ? "6 times!<br>Is it really worth the effort?" : "Hey! No Hextuple Scansies!<br>Is it really worth the effort?";
+				else if (User.Count == 7) 	document.getElementById('scantext').innerHTML = "Is it truly worth it?";
+				else if (User.Count == 8) 	document.getElementById('scantext').innerHTML = "...";
+				else if (User.Count == 9)	document.getElementById('scantext').innerHTML = 'Do you want some kinda of prize or something mate?';
+				else if (User.Count == 10)	document.getElementById('scantext').innerHTML = 'Fine, Scan it again to get your prize';
+				else if (User.Count == 11)	RickRoll(true);
+				else if (User.Count == 12)	document.getElementById('scantext').innerHTML = 'haha, gottem';
+				else if (User.Count == 13)	document.getElementById('scantext').innerHTML = 'what, you want an actual prize';
+				else if (User.Count == 14)	document.getElementById('scantext').innerHTML = 'Fine';
+				else if (User.Count > 14)	document.getElementById('scantext').innerHTML = '♥';
+				else	document.getElementById('scantext').innerHTML = 'Seems like something broke, sorry about that. Im always working on making this QR Code Better';
 			}
 			catch (error) {
 				
